@@ -29,14 +29,14 @@
  */
 
 #include <stdlib.h>
-
+#include <android-base/properties.h>
 #include "vendor_init.h"
 #include "property_service.h"
-#include "log.h"
-#include "util.h"
 #include <sys/sysinfo.h>
 #define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
 #include <sys/_system_properties.h>
+
+using android::base::GetProperty;
 
 void property_override(char const prop[], char const value[])
 {
@@ -67,11 +67,11 @@ void vendor_load_properties()
     bool msim = false;
     int rc;
 
-    platform = property_get("ro.board.platform");
+    platform = GetProperty("ro.board.platform","");
     if (platform != ANDROID_TARGET)
         return;
 
-    dualsim = property_get("ro.boot.dualsim");
+    dualsim = GetProperty("ro.boot.dualsim","");
     if (dualsim == "true") {
         property_set("persist.radio.force_get_pref", "1");
         property_set("persist.radio.multisim.config", "dsds");
@@ -79,10 +79,10 @@ void vendor_load_properties()
         msim = true;
     }
 
-    bootdevice = property_get("ro.boot.device");
+    bootdevice = GetProperty("ro.boot.device","");
     property_set("ro.hw.device", bootdevice.c_str());
 
-    radio = property_get("ro.boot.radio");
+    radio = GetProperty("ro.boot.radio","");
     property_set("ro.hw.radio", radio.c_str());
 
     if (is2GB()) {
@@ -103,7 +103,7 @@ void vendor_load_properties()
 
     property_set("ro.telephony.default_network", "10");
 
-    sku = property_get("ro.boot.hardware.sku");
+    sku = GetProperty("ro.boot.hardware.sku","");
     if (sku == "XT1600") {
         /* XT1600 */
         customerid = "retail";
