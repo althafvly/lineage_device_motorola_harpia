@@ -14,6 +14,8 @@
 # limitations under the License.
 
 $(call inherit-product, device/motorola/harpia/full_harpia.mk)
+$(call inherit-product, vendor/gzosp/config/common_full_phone.mk)
+
 
 # Boot animation
 TARGET_SCREEN_WIDTH := 720
