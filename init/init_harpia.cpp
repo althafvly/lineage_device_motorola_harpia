@@ -134,5 +134,4 @@ void vendor_load_properties()
         property_set("ro.mot.build.customerid", customerid);
     }
 
-    INFO("Found sku id: %s setting build properties for harpia device\n", sku.c_str());
 }
