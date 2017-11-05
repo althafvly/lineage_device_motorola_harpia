@@ -20,3 +20,4 @@ Camera  | 8MP, autofocus, flash LED
 Copyright 2016 - The CyanogenMod Project.
 
 ![Moto G Play](http://i.imgur.com/WGKA5LSl.jpg "Moto G Play")
+# device_motorola_harpia
